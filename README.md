@@ -21,12 +21,16 @@ Run this to clone the git project to your folder
     git clone https://github.com/Peterson120/Checkers
 
 <h3>Windows</h3>
-Run command prompt as administrator.
+Open command prompt as administrator.
+<br></br>
+Change to home Directory
     
     cd C:\User\%user%\
 <br></br>
+Make Folder and Change Directory
     
     mkdir Checkers && cd Checkers
 <br></br>
+Clone repository
 
     git clone https://github.com/Peterson120/Checkers
