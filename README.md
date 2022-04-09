@@ -16,12 +16,12 @@ To user the following commands please make sure git is installed
 <br></br>
 Run this to create a directory in your Home folder. Then change to that directory.\
 <br></br>
-'''javascript
+```javascript
 sudo cd ~ && mkdir Checkers && cd Checkers
-'''
+```
 <br></br>
 Run this to clone the git project to your folder
 <br></br>
-'''javascript
+```javascript
 git clone https://github.com/Peterson120/Checkers
-'''
+```
