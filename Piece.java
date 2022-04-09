@@ -87,14 +87,15 @@ public class Piece extends Actor
         printBoard(middle);
         int newX = getX()/400/8;
         int newY = getY()/400/8;
+        System.out.println(GameWorld.game.check(middle,newX,newY,newX-1,newY+1));
         if(GameWorld.game.check(middle,newX,newY,newX-1,newY+1)) {
             List tilesPresent = getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() + GameWorld.TILE_SIZE, Tile.class);
-            availableTiles.add((Tile)tilesPresent.get(0));
+            if(tilesPresent.size() > 0) availableTiles.add((Tile)tilesPresent.get(0));
         }
         if(GameWorld.game.check(middle,newX,newY,newX+1,newY+1))
         {
             List tilesPresent = getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() + GameWorld.TILE_SIZE, Tile.class);
-            availableTiles.add((Tile)tilesPresent.get(0));
+            if(tilesPresent.size() > 0) availableTiles.add((Tile)tilesPresent.get(0));
         }
         for(Tile tile: availableTiles){
             tile.drawTile(tile.getColor(), true);
@@ -130,11 +131,11 @@ public class Piece extends Actor
                     }
                     else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor1))
                     {
-                        board[col][row] = 'w';
-                    }
-                    else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor2))
-                    {
                         board[col][row] = 'r';
+                    }
+                    else
+                    {
+                        board[col][row] = 'w';
                     }
                 }
                 else board[col][row] = 'n';
