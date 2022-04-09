@@ -10,7 +10,7 @@ April 9, 2022
 <br></br>
 Download and install Greenfoot and JavaJDK, clone this repository and open the project.greenfoot file. Then run and play! 
 <br></br>
-To user the following commands please make sure git is installed
+To use the following commands please make sure git is installed
 <br></br>
 <h3>Ubuntu</h3>
 Run this to create a directory in your Home folder. Then change to that directory.
