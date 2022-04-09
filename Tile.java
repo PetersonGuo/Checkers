@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Tile extends Actor
 {
     private GreenfootImage image;
-    public final int TILE_SIZE = GameWorld.WORLD_WIDTH / 8;
     private Color color;
     
     private MouseInfo mouse;
@@ -17,7 +16,7 @@ public class Tile extends Actor
     
     public Tile(Color color){
         this.color = color;
-        image = new GreenfootImage(TILE_SIZE + 1, TILE_SIZE + 1);
+        image = new GreenfootImage(GameWorld.TILE_SIZE + 1, GameWorld.TILE_SIZE + 1);
         drawTile(color, hovering);
     }
     

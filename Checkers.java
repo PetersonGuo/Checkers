@@ -7,11 +7,19 @@ public class Checkers
     private int turn = 0;
     private Scanner scan;
     
+    /*
+     * Create a multi dimensional array
+     * w stands for white
+     * n stand for none/null
+     * r stands for red
+     */
     public Checkers()
     {
         scan = new Scanner(System.in);
+        main = new char[8][8];
         for(int i = 0; i < length; i++)
         {
+            main[i] = new char[8];
             for(int j = 0; j < length; j++){
                 if(i < 4) main[i][j] = 'w';
                 else if(i == 4 || i == 3) main[i][j] = 'n';
@@ -22,6 +30,7 @@ public class Checkers
     
     public int getTurn() {return turn;}
     public char[][] getBoard() {return main;}
+    public void setBoard(char[][] main) {this.main = main;}
     
     private int score(char[][] board) 
     {
@@ -95,10 +104,35 @@ public class Checkers
                     }
                     else if(colDiff > 0) if(board[inRow + 1][inCol + 1] == opp(board[inRow][inCol])) return true;;
                 }
+                canJump(board, finalRow, finalCol, false, 1);
             }
             else if(Math.abs(rowDiff) == 1 && Math.abs(colDiff) == 1)
             {
-                board[finalRow][finalCol] = board[inRow][inCol];
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean canJump(char[][] board, int row, int col, boolean isKing, int depth)
+    {
+        int[] increment = {1,-1};
+        if(isKing)
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                for(int x = 0; x < 2; x++)
+                {
+                    if(board[row + increment[i]][col + increment[x]] == opp(board[row][col]) && board[row + i*2][col + x*2] == 'n') return true;
+                }
+            }
+        }
+        else
+        {
+            int forward = board[row][col] == 'w' ? -1:1;
+            for(int i = 0; i < 2; i++)
+            {
+                if(board[row + forward][col + increment[i]] == opp(board[row][col])) return true;
             }
         }
         return false;
@@ -130,7 +164,7 @@ public class Checkers
         if(white)
         {
             if(depth == 10 || piecesLeft == 0) return score; // Base Case
-            int best = Integer.MIN_VALUE;
+            int best = -1000;
             
             // Recur for left and right children
             for(int i = 0; i < piecesLeft; i++) {
@@ -154,7 +188,7 @@ public class Checkers
         else
         {
             if(depth == 10 || piecesLeft == 0) return score; // Base Case
-            int best = Integer.MAX_VALUE;
+            int best = 1000;
             
             // Recur for left and right children
             for(int i = 0; i < piecesLeft; i++)
