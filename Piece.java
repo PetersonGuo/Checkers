@@ -146,19 +146,19 @@ public class Piece extends Actor
             for(int row = 0; row < 7; row++)
             {
                 List pieceAt = getWorld().getObjectsAt(50 * (row) + 25,50 * (col) + 25, Piece.class);
-                System.out.println(50 * (row + 1) + 25);
-                System.out.println(50 * (col + 1) + 25);
+                System.out.println(50 * (row) + 25);
+                System.out.println(50 * (col) + 25);
                 if(pieceAt.size() == 0)
                 {
-                    board[row][col] = 'n';
+                    board[col][row] = 'n';
                 }
                 else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor1))
                 {
-                    board[row][col] = 'w';
+                    board[col][row] = 'w';
                 }
                 else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor2))
                 {
-                    board[row][col] = 'r';
+                    board[col][row] = 'r';
                 }
             }
         }
