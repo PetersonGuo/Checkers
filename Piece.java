@@ -87,40 +87,15 @@ public class Piece extends Actor
         printBoard(middle);
         int newX = getX()/400/8;
         int newY = getY()/400/8;
-        if(GameWorld.game.check(middle,newX,newY,newX-1,newY-1)) {
-            List tilesPresent = getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class);
+        if(GameWorld.game.check(middle,newX,newY,newX-1,newY+1)) {
+            List tilesPresent = getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() + GameWorld.TILE_SIZE, Tile.class);
             availableTiles.add((Tile)tilesPresent.get(0));
         }
-        if(GameWorld.game.check(middle,newX,newY,newX+1,newY-1))
+        if(GameWorld.game.check(middle,newX,newY,newX+1,newY+1))
         {
-            List tilesPresent = getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class);
+            List tilesPresent = getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() + GameWorld.TILE_SIZE, Tile.class);
             availableTiles.add((Tile)tilesPresent.get(0));
         }
-        // if(getY() - GameWorld.TILE_SIZE > 0){
-            // if(getX() - GameWorld.TILE_SIZE > 0){
-                // List piecePresent = getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Piece.class);
-                // if(piecePresent.size() == 0){
-                    // List tilesPresent = getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class);
-                    // availableTiles.add((Tile)tilesPresent.get(0));
-                // }
-                // else if(((Piece)(piecePresent.get(0))).getColor() != color)
-                // {
-                    // if(getX() - 2 * GameWorld.TILE_SIZE > 0){
-                        // if(getY() - 2 * GameWorld.TILE_SIZE > 0){
-                            // piecePresent = getWorld().getObjectsAt(getX() - 2 * GameWorld.TILE_SIZE, getY() - 2 * GameWorld.TILE_SIZE, Piece.class);
-                            // if(piecePresent.get(0) == null){
-                                // List tilesPresent = getWorld().getObjectsAt(getX() - 2 * GameWorld.TILE_SIZE, getY() - 2 * GameWorld.TILE_SIZE, Tile.class);
-                                // availableTiles.add((Tile)tilesPresent.get(0));
-                            // }
-                        // }
-                    // }
-                // }
-            // }
-            
-            // if(getX() + GameWorld.TILE_SIZE < GameWorld.WORLD_SIZE){
-                
-            // }
-        // }
         for(Tile tile: availableTiles){
             tile.drawTile(tile.getColor(), true);
         }
@@ -141,25 +116,28 @@ public class Piece extends Actor
     private char[][] createBoard() //issue in this function
     {
         char[][] board = GameWorld.game.getBoard();
-        for(int col = 0; col < 7; col++)
+        for(int col = 0; col < 8; col++)
         {
-            for(int row = 0; row < 7; row++)
+            for(int row = 0; row < 8; row++)
             {
-                List pieceAt = getWorld().getObjectsAt(50 * (row) + 25,50 * (col) + 25, Piece.class);
-                System.out.println(50 * (row) + 25);
-                System.out.println(50 * (col) + 25);
-                if(pieceAt.size() == 0)
+                int offset = (row+1) % 2 == 0 ? 0:1;
+                if((col + 1 + offset) % 2 == 0)
                 {
-                    board[col][row] = 'n';
+                    List pieceAt = getWorld().getObjectsAt(50 * (row) + 25,50 * (col) + 25, Piece.class);
+                    if(pieceAt.size() == 0)
+                    {
+                        board[col][row] = 'n';
+                    }
+                    else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor1))
+                    {
+                        board[col][row] = 'w';
+                    }
+                    else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor2))
+                    {
+                        board[col][row] = 'r';
+                    }
                 }
-                else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor1))
-                {
-                    board[col][row] = 'w';
-                }
-                else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor2))
-                {
-                    board[col][row] = 'r';
-                }
+                else board[col][row] = 'n';
             }
         }
         return board;

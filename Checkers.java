@@ -163,14 +163,14 @@ public class Checkers
         
         if(white)
         {
-            if(depth == 10 || piecesLeft == 0) return score; // Base Case
+            if(depth == 20 || piecesLeft == 0) return score; // Base Case
             int best = -1000;
             
             // Recur for left and right children
             for(int i = 0; i < piecesLeft; i++) {
                 for (int j = 0; j < 2; j++)
                 {
-                    //if can skip
+                    //if can take
                     // if() if is possible move
                     // {
                         
