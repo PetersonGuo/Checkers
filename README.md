@@ -23,7 +23,7 @@ Run this to clone the git project to your folder
 <h3>Windows</h3>
 Run command prompt as administrator.
     
-    cd C:\User\%user%\Documents
+    cd C:\User\%user%\
 <br></br>
     
     mkdir Checkers && cd Checkers
