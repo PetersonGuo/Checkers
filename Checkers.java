@@ -6,33 +6,17 @@
  */
 public class Checkers  
 {
-    // instance variables - replace the example below with your own
-    private int x;
 
     /**
      * Constructor for objects of class Checkers
      */
     public Checkers()
     {
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+        
     }
     
     // Returns optimal value for current player (Initially called for root and maximizer)
-    static int minimax(int depth, int nodeIndex,
-                       Boolean maximizingPlayer,
-                       int values[], int alpha,
-                       int beta)
+    public int minimax(int depth, int nodeIndex, boolean maximizingPlayer, int values[], int alpha, int beta)
     {
         // Base Case
         if (depth == 3)
