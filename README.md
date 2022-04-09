@@ -15,6 +15,7 @@ To use the following commands please make sure git is installed
 <h3>Ubuntu</h3>
 Run this to create a directory in your Home folder. Then change to that directory.
 
+    cd ~
     sudo mkdir Checkers && cd Checkers
 Run this to clone the git project to your folder
 
