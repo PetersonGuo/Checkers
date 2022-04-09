@@ -1,6 +1,4 @@
 <h1>CHECKERS!! </h1>
-
-<h3>VERSION or DATE: </h3>
 April 9, 2022
 
 Play Checkers against an AI bot.
