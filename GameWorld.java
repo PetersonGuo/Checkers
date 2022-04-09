@@ -23,7 +23,7 @@ public class GameWorld extends World
         setBackground(drawBackground());
     }
     
-    public static GreenfootImage drawBackground(){
+    public static GreenfootImage drawBackground() {
         GreenfootImage bg = new GreenfootImage(WORLD_WIDTH, WORLD_HEIGHT);
         bg.clear();
         

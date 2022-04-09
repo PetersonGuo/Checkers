@@ -12,8 +12,8 @@ public class Checkers
         row = new ArrayList<ArrayList<Character>>();
         for(int i = 0; i < 8; i++)
         {
-            ArrayList<Character> x= new ArrayList<Character>();
-            for(int j = 0; j < 8; j++){
+            ArrayList<Character> x = new ArrayList<Character>();
+            for(int j = 0; j < 4; j++){
                 x.add('n');
             }
             row.add(x);
@@ -23,12 +23,11 @@ public class Checkers
     public int getTurn() {return turn;}
     
     // Remember to implement not run minimax if only one possibility for ai
-    // Returns optimal value for current player (Initially called for root and maximizer)
+    // Returns optimal value for current player(Initially called for root and maximizer)
     public int minimax(int depth, int nodeIndex, boolean white, int values, int alpha, int beta)
     {
         // Base Case
-        if(depth == 10)
-            return values;
+        if(depth == 10) return values;
         
         if(white)
         {
