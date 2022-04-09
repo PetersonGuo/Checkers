@@ -4,7 +4,6 @@ April 9, 2022
 <p>Play Checkers against an AI bot.</p>
 
 <h3>HOW TO START THIS PROJECT</h3>
-<br></br>
 <a href="https://www.greenfoot.org/download">Download Greenfoot</a>
 <br></br>
 <a href="https://www.oracle.com/java/technologies/downloads/">Download Java JDK</a>
