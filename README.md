@@ -13,12 +13,15 @@ Download and install Greenfoot and JavaJDK, clone this repository and open the p
 To user the following commands please make sure git is installed
 <br></br>
 <h3>Ubuntu</h3>
-<br></br>
-Run this to create a directory in your Home folder. Then change to that directory.\
-<br></br>
+Run this to create a directory in your Home folder. Then change to that directory.
 
     sudo cd ~ && mkdir Checkers && cd Checkers
 Run this to clone the git project to your folder
-<br></br>
 
+    git clone https://github.com/Peterson120/Checkers
+
+<h3>Windows</h3>
+Run command prompt as administrator.
+    
+    cd New-Item -Path' C:\Checkers" -ItemType Directory && cd Checkers
     git clone https://github.com/Peterson120/Checkers
