@@ -3,7 +3,7 @@ April 9, 2022
 <br></br>
 <p>Play Checkers against an AI bot.</p>
 
-<h3>HOW TO START THIS PROJECT: </h3>
+<h3>HOW TO START THIS PROJECT</h3>
 <br></br>
 <a href="https://www.greenfoot.org/download">Download Greenfoot</a>
 <br></br>
