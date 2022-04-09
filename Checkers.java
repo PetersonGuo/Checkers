@@ -69,7 +69,7 @@ public class Checkers
         return 'w';
     }
     
-    private boolean isValid(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
+    private boolean check(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
     {
         int rowDiff = finalRow - inRow;
         int colDiff = finalCol - inCol;
@@ -104,7 +104,7 @@ public class Checkers
     
     public char[][] takeTurn(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
     {
-        if(isValid(board,inRow,inCol,finalRow,finalCol))
+        if(check(board,inRow,inCol,finalRow,finalCol))
         {
             turn++;
             if(Math.abs(finalCol - inCol) == 2 && Math.abs(finalRow - inRow) == 2)
@@ -134,13 +134,16 @@ public class Checkers
             for(int i = 0; i < piecesLeft; i++) {
                 for (int j = 0; j < 2; j++)
                 {
-                    //if can double skip
+                    //if can skip
+                    // if() if is possible move
+                    // {
+                        
+                    // }
                     int val = minimax(depth++, false, board, alpha, beta, redLeft(board));
                     best = Math.max(best, val);
                     alpha = Math.max(alpha, best);
-                        
-                    // Alpha Beta Pruning
-                    if (beta <= alpha)
+                    
+                    if (beta <= alpha) // Alpha Beta Pruning
                         break;
                 }
             }
@@ -161,8 +164,7 @@ public class Checkers
                     best = Math.min(best, val);
                     beta = Math.min(beta, best);
                     
-                    // Alpha Beta Pruning
-                    if (beta <= alpha)
+                    if (beta <= alpha) // Alpha Beta Pruning
                         break;
                 }
             }
