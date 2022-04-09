@@ -1,31 +1,26 @@
-/**
- * Write a description of class Checkers here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import java.util.*;
 public class Checkers  
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private Scanner scan;
+    private int turn = 0;
+    private ArrayList<ArrayList<Character>> row = new ArrayList<ArrayList<Character>>();
 
     /**
      * Constructor for objects of class Checkers
      */
     public Checkers()
     {
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+        scan = new Scanner(System.in);
+        for(int i = 0; i < 8; i++)
+        {
+            ArrayList<Character> col = new ArrayList<Character>();
+            for(int j = 0; j < 4; j++)
+            {
+                col.add('n');
+            }
+            row.add(col);
+        }
     }
     
     // Returns optimal value for current player (Initially called for root and maximizer)
