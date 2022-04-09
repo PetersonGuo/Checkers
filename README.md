@@ -1,6 +1,6 @@
 <h1>CHECKERS!! </h1>
 April 9, 2022
----
+<br></br>
 <p>Play Checkers against an AI bot.</p>
 
 <h3>HOW TO START THIS PROJECT: </h3>
