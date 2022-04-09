@@ -2,7 +2,8 @@
 comment0.target=Checkers
 comment1.params=
 comment1.target=Checkers()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Checkers\r\n
-comment2.params=depth\ nodeIndex\ maximizingPlayer\ values\ alpha\ beta
-comment2.target=int\ minimax(int,\ int,\ boolean,\ int[],\ int,\ int)
-numComments=3
+comment2.params=
+comment2.target=int\ getTurn()
+comment3.params=depth\ nodeIndex\ white\ values\ alpha\ beta
+comment3.target=int\ minimax(int,\ int,\ boolean,\ int,\ int,\ int)
+numComments=4
