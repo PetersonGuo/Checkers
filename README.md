@@ -26,11 +26,9 @@ Open command prompt as administrator.
 Change to home Directory
     
     cd C:\User\%user%\
-<br></br>
 Make Folder and Change Directory
     
     mkdir Checkers && cd Checkers
-<br></br>
 Clone repository
 
     git clone https://github.com/Peterson120/Checkers
