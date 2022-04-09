@@ -21,6 +21,7 @@ public class Checkers
     }
     
     public int getTurn() {return turn;}
+    public char[][] getBoard() {return main;}
     
     private int score(char[][] board) 
     {
@@ -69,8 +70,9 @@ public class Checkers
         return 'w';
     }
     
-    private boolean check(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
+    public boolean check(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
     {
+        if(finalRow >= 8|| finalCol >= 8 || finalRow < 0 || finalCol < 0) return false;
         int rowDiff = finalRow - inRow;
         int colDiff = finalCol - inCol;
         if(board[finalRow][finalCol] == 'n')

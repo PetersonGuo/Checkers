@@ -11,10 +11,12 @@ public class GameWorld extends World
     public static final int WORLD_WIDTH = 400;
     public static final int WORLD_HEIGHT = 400;
     
+    public static Checkers game;
+    
     public static Color tileColor1 = Color.RED;
     public static Color tileColor2 = Color.BLACK;
-    public static Color pieceColor1 = Color.BLUE;
-    public static Color pieceColor2 = Color.MAGENTA;
+    public static Color pieceColor1 = Color.BLUE; //AI color
+    public static Color pieceColor2 = Color.MAGENTA; //User Color
     
     /**
      * Constructor for objects of class GameWorld.
@@ -38,29 +40,22 @@ public class GameWorld extends World
             }
         }
         
-        for(int i = 0; i < 4; i++){
-            Piece piece = new Piece(pieceColor1);
-            addObject(piece, WORLD_WIDTH * (i * 2 + 1) / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * 1 / 16 - 1);
+        for(int j = 1; j < 6; j += 2)
+        {
+            for(int i = 0; i < 4; i++){
+                Piece piece = new Piece(pieceColor2);
+                addObject(piece, WORLD_WIDTH * i * 2 / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * j / 16 - 1);
+            }
         }
-        for(int i = 0; i < 4; i++){
-            Piece piece = new Piece(pieceColor1);
-            addObject(piece, WORLD_WIDTH * i * 2 / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * 3 / 16 - 1);
+        
+        for(int j = 11; j < 16; j += 2)
+        {
+            for(int i = 0; i < 4; i++){
+                Piece piece = new Piece(pieceColor2);
+                addObject(piece, WORLD_WIDTH * i * 2 / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * j / 16 - 1);
+            }
         }
-        for(int i = 0; i < 4; i++){
-            Piece piece = new Piece(pieceColor1);
-            addObject(piece, WORLD_WIDTH * (i * 2 + 1) / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * 5 / 16 - 1);
-        }
-        for(int i = 0; i < 4; i++){
-            Piece piece = new Piece(pieceColor2);
-            addObject(piece, WORLD_WIDTH * i * 2 / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * 11 / 16 - 1);
-        }
-        for(int i = 0; i < 4; i++){
-            Piece piece = new Piece(pieceColor2);
-            addObject(piece, WORLD_WIDTH * (i * 2 + 1) / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * 13 / 16 - 1);
-        }
-        for(int i = 0; i < 4; i++){
-            Piece piece = new Piece(pieceColor2);
-            addObject(piece, WORLD_WIDTH * i * 2 / 8 + WORLD_WIDTH / 16 - 1, WORLD_HEIGHT * 15 / 16 - 1);
-        }
+        
+        game = new Checkers();
     }
 }
