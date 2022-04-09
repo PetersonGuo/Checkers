@@ -17,18 +17,10 @@ To user the following commands please make sure git is installed
 Run this to create a directory in your Home folder. Then change to that directory.\
 <br></br>
 
-
-
-
-sudo cd ~ && mkdir Checkers && cd Checkers
+    sudo cd ~ && mkdir Checkers && cd Checkers
 
 <br></br>
 Run this to clone the git project to your folder
 <br></br>
 
-
-
-
-
-
-git clone https://github.com/Peterson120/Checkers
+    git clone https://github.com/Peterson120/Checkers
