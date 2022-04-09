@@ -10,5 +10,3 @@ April 9, 2022
 <a href="https://www.oracle.com/java/technologies/downloads/">Download Java JDK</a>
 <br></br>
 Download and install Greenfoot and JavaJDK and open the project.greenfoot file. Then run and play! 
-
-Peterson Guo and Edison Lim
