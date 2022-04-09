@@ -19,7 +19,7 @@ Run this to create a directory in your Home folder. Then change to that director
     sudo mkdir Checkers && cd Checkers
 Run this to clone the git project to your folder
 
-    git clone https://github.com/Peterson120/Checkers
+    sudo git clone https://github.com/Peterson120/Checkers
 
 <h3>Windows</h3>
 Open command prompt as administrator.
