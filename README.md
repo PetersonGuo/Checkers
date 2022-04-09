@@ -1,7 +1,7 @@
 <h1>CHECKERS!! </h1>
 April 9, 2022
 ---
-Play Checkers against an AI bot.
+<body>Play Checkers against an AI bot.</body>
 
 <h2>HOW TO START THIS PROJECT: </h2>
 Download Greenfoot https://www.greenfoot.org/download
