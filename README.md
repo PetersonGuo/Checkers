@@ -24,5 +24,7 @@ Run this to clone the git project to your folder
 Run command prompt as administrator.
     
     cd C:\User\%user%\Documents
+    
     New-Item -Path' C:\User\%user%\Documents\Checkers" -ItemType Directory && cd Checkers
+    
     git clone https://github.com/Peterson120/Checkers
