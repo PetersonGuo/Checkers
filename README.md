@@ -18,8 +18,6 @@ Run this to create a directory in your Home folder. Then change to that director
 <br></br>
 
     sudo cd ~ && mkdir Checkers && cd Checkers
-
-<br></br>
 Run this to clone the git project to your folder
 <br></br>
 
