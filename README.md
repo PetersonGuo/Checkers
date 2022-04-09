@@ -4,8 +4,11 @@ April 9, 2022
 <p>Play Checkers against an AI bot.</p>
 
 <h3>HOW TO START THIS PROJECT: </h3>
+<br></br>
 <a href="https://www.greenfoot.org/download">Download Greenfoot</a>
+<br></br>
 <a href="https://www.oracle.com/java/technologies/downloads/">Download Java JDK</a>
-Simply open Greenfoot and run
+<br></br>
+Download and install Greenfoot and JavaJDK and open the project.greenfoot file. Then run and play! 
 
 Peterson Guo and Edison Lim
