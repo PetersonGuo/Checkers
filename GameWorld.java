@@ -53,7 +53,7 @@ public class GameWorld extends World
         {
             for(int i = 1; i < 5; i++)
             {
-                int offset = j % 2 == 0 ? 0 : TILE_SIZE;
+                int offset = j % 2 == 1 ? 0 : TILE_SIZE;
                 Piece piece = new Piece(pieceColor2);
                 addObject(piece, TILE_SIZE * i * 2 + offset - TILE_SIZE * 3/2, TILE_SIZE * (j + 5) - TILE_SIZE/2);
             }

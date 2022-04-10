@@ -82,7 +82,6 @@ public class Piece extends Actor
     
     private void check(){
         char[][] middle = createBoard();
-        printBoard(middle);
         int newX = getX()/GameWorld.TILE_SIZE;
         int newY = getY()/GameWorld.TILE_SIZE;
         if(GameWorld.game.check(middle,newX,newY,newX-1,newY+1)) {
@@ -106,7 +105,7 @@ public class Piece extends Actor
         }
     }
     
-    private char[][] createBoard() //issue in this function
+    private char[][] createBoard()
     {
         char[][] board = GameWorld.game.getBoard();
         for(int row = 0; row < 8; row++)
@@ -114,7 +113,7 @@ public class Piece extends Actor
             for(int col = 0; col < 8; col++)
             {
                 int offset = (col + 1) % 2 == 0 ? 0:1;
-                if((row + 1 + offset) % 2 == 0)
+                if((row + 1 + offset) % 2 == 1)
                 {
                     List pieceAt = getWorld().getObjectsAt(50 * (col) + 25,50 * (row) + 25, Piece.class);
                     if(pieceAt.size() == 0) {board[row][col] = 'n';}

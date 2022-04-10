@@ -185,7 +185,7 @@ public class Checkers
             for(int i = 0; i < piecesLeft*2; i+=2) 
             {
                 int x = indice.get(i);
-                int y = indice.get(i);
+                int y = indice.get(i + 1);
                 for (int j = 0; j < 2; j++)
                 {
                     int[] direction = {1,-1};
@@ -211,18 +211,38 @@ public class Checkers
             if(depth == 10 || piecesLeft == 0) return score; // Base Case
             int best = Integer.MAX_VALUE;
             
-            // Recur for left and right children
-            for(int i = 0; i < piecesLeft; i++)
+            List<Integer> indice = new ArrayList<Integer>(piecesLeft*2); //find locations of all remaining white pieces formatted [row,col]
+            for(int i = 0; i < 8; i++)
             {
+                for(int j = 0; j < 8; j+=2)
+                {
+                    if(board[i][j] == 'r') {
+                        indice.add(i);
+                        indice.add(j);
+                    }
+                }
+            }
+            
+            for(int i = 0; i < piecesLeft*2; i+=2) 
+            {
+                int x = indice.get(i);
+                int y = indice.get(i + 1);
                 for (int j = 0; j < 2; j++)
                 {
-                    //if can double skip
-                    int val = minimax(depth++, true, board, alpha, beta, whiteLeft(board));
-                    best = Math.min(best, val);
-                    beta = Math.min(beta, best);
-                    
-                    if (beta <= alpha) // Alpha Beta Pruning
-                        break;
+                    int[] direction = {1,-1};
+                    // if can take
+                    if(check(board, indice.get(i), indice.get(i+1), indice.get(i) + direction[j], indice.get(i+1) + 1)) //if is possible move take move
+                    {
+                        board[x][y] = 'n'; //try move
+                        board[indice.get(i) + direction[j]][indice.get(i+1) + 1] = 'w'; //try move
+                        int val = minimax(depth++, false, board, alpha, beta, redLeft(board));
+                        best = Math.max(best, val);
+                        alpha = Math.max(alpha, best);
+                        board[x][y] = 'w'; //reverse move
+                        board[indice.get(i) + direction[j]][indice.get(i+1) + 1] = 'n'; //reverse move
+                        if (beta <= alpha) // Alpha Beta Pruning
+                            break;
+                    }
                 }
             }
             return best;
