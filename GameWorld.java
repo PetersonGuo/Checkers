@@ -25,40 +25,36 @@ public class GameWorld extends World
     public GameWorld()
     {
         super(WORLD_SIZE, WORLD_SIZE, 1);
+        createTiles(0);
         
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-                Tile tile1 = new Tile(tileColor1);
-                Tile tile2 = new Tile(tileColor2);
-                Tile tile3 = new Tile(tileColor1);
-                Tile tile4 = new Tile(tileColor2);
-                addObject(tile1, WORLD_SIZE * j * 2 / 8 + WORLD_SIZE / 16, WORLD_SIZE * i * 2 / 8 + WORLD_SIZE / 16);
-                addObject(tile2, WORLD_SIZE * (j * 2 + 1) / 8 + WORLD_SIZE / 16, WORLD_SIZE * i * 2 / 8 + WORLD_SIZE / 16);
-                addObject(tile3, WORLD_SIZE * (j * 2 + 1) / 8 + WORLD_SIZE / 16, WORLD_SIZE * (i * 2 + 1) / 8 + WORLD_SIZE / 16);
-                addObject(tile4, WORLD_SIZE * j * 2 / 8 + WORLD_SIZE / 16, WORLD_SIZE * (i * 2 + 1) / 8 + WORLD_SIZE / 16);
-            }
-        }
-        
-        for(int j = 1; j < 4; j++)
+        for(int j = 1; j < 9; j++)
         {
+            if(j > 3 && j < 6) continue;
             for(int i = 1; i < 5 ; i++)
             {
                 int offset = j % 2 == 0 ? 0 : TILE_SIZE;
-                Piece piece = new Piece(pieceColor1);
-                addObject(piece, TILE_SIZE * i * 2 + offset  - TILE_SIZE * 3/2, TILE_SIZE * j - TILE_SIZE/2);
-            }
-        }
-        
-        for(int j = 1; j < 4; j++)
-        {
-            for(int i = 1; i < 5; i++)
-            {
-                int offset = j % 2 == 0 ? 0 : TILE_SIZE;
-                Piece piece = new Piece(pieceColor2);
-                addObject(piece, TILE_SIZE * i * 2 + offset - TILE_SIZE * 3/2, TILE_SIZE * (j + 5) - TILE_SIZE/2);
+                Color color = j > 5 ? pieceColor2 : pieceColor1;
+                Piece piece = new Piece(color);
+                addObject(piece, TILE_SIZE * i * 2 + offset - TILE_SIZE * 3/2 - 1, TILE_SIZE * j - TILE_SIZE/2);
             }
         }
         
         game = new Checkers();
+    }
+    
+    public void createTiles(int it)
+    {
+        if(it > 63)return;
+        Color color = it % 2 == 0 ? tileColor1:tileColor2;
+        if((it/8)%2 == 1) color = oppColor(color);
+        Tile tile = new Tile(color);
+        addObject(tile, TILE_SIZE * (it % 8) + TILE_SIZE/2, TILE_SIZE * (it/8) + TILE_SIZE / 2);
+        createTiles(it+1);
+    }
+    
+    public Color oppColor(Color curr)
+    {
+        if(curr.equals(tileColor1))return tileColor2;
+        return tileColor1;
     }
 }

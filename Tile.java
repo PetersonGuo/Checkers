@@ -55,7 +55,5 @@ public class Tile extends Actor
         setImage(image);
     }
     
-    public Color getColor(){
-        return color;
-    }
+    public Color getColor() {return color;}
 }

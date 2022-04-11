@@ -2,7 +2,7 @@
 comment0.target=Checkers
 comment1.params=
 comment1.target=Checkers()
-comment1.text=\r\n\ Create\ a\ multi\ dimensional\ array\r\n\ w\ stands\ for\ white\r\n\ n\ stand\ for\ none/null\r\n\ r\ stands\ for\ red\r\n
+comment1.text=\n\ Create\ a\ multi\ dimensional\ array\n\ w\ stands\ for\ white\n\ n\ stand\ for\ none/null\n\ r\ stands\ for\ red\n
 comment10.params=board\ row\ col\ isKing\ depth
 comment10.target=boolean\ canJump(char[][],\ int,\ int,\ boolean,\ int)
 comment11.params=board\ inRow\ inCol\ finalRow\ finalCol

@@ -34,30 +34,22 @@ public class Piece extends Actor
     public void act()
     {
         mouse = Greenfoot.getMouseInfo();
-        // try
-        // {
-            // System.out.println(mouse.getX() + " " + mouse.getY()); // debug
-        // }catch(Exception NullPointerException){}
         Tile tile = (Tile)getOneIntersectingObject(Tile.class);
-        if(Greenfoot.mouseClicked(this)){
+        if(Greenfoot.mouseClicked(this) && !clicked) {
             hovering = false;
             clicked = true;
-            tile.drawTile(tile.getColor(), clicked);
             availableTiles = new ArrayList<Tile>();
             check();
-        }
-        else if(clicked){
-            for(Tile availableTile: availableTiles){
-                if(Greenfoot.mouseClicked(availableTile)){
+        } else if(clicked) {
+            createBoard();
+            for(Tile availableTile: availableTiles) {
+                if(Greenfoot.mouseClicked(availableTile)) {
                     this.setLocation(availableTile.getX(), availableTile.getY());
-                    clicked = false;
-                    createBoard();
                 }
-                else if(Greenfoot.mouseClicked(this)) clicked = false;
             }
-        }
-        else if(!clicked){
-            if(Greenfoot.mouseMoved(this)){
+            clicked = false;
+        } else if(!clicked) {
+            if(Greenfoot.mouseMoved(this)) {
                 hovering = true;
                 // if(!soundPlayed){ //adds sound
                     // moveSound.play();
@@ -66,7 +58,7 @@ public class Piece extends Actor
                 
                 tile.drawTile(tile.getColor(), hovering);
             }
-            if(Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)){
+            if(Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)) {
                 hovering = false;
                 // soundPlayed = false;
                 
@@ -75,30 +67,31 @@ public class Piece extends Actor
         }
     }
     
-    private void drawPiece(Color color){
+    private void drawPiece(Color color) {
         image.clear();
         image.setColor(color);
         image.fillOval(1, 1, PIECE_SIZE, PIECE_SIZE);
         setImage(image);
     }
     
-    private void check(){
+    private void check() {
         char[][] middle = createBoard();
-        printBoard(middle);
-        int newX = getX()/400/8;
-        int newY = getY()/400/8;
-        System.out.println(GameWorld.game.check(middle,newX,newY,newX-1,newY+1));
-        if(GameWorld.game.check(middle,newX,newY,newX-1,newY+1)) {
-            List tilesPresent = getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() + GameWorld.TILE_SIZE, Tile.class);
-            if(tilesPresent.size() > 0) availableTiles.add((Tile)tilesPresent.get(0));
-        }
-        if(GameWorld.game.check(middle,newX,newY,newX+1,newY+1))
+        int newX = getX()/GameWorld.TILE_SIZE;
+        int newY = getY()/GameWorld.TILE_SIZE;
+        List tilesPresent = new ArrayList<>();
+        if(!getColor().equals(GameWorld.pieceColor1))
         {
-            List tilesPresent = getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() + GameWorld.TILE_SIZE, Tile.class);
-            if(tilesPresent.size() > 0) availableTiles.add((Tile)tilesPresent.get(0));
-        }
-        for(Tile tile: availableTiles){
-            tile.drawTile(tile.getColor(), true);
+            if(GameWorld.game.check(middle,newX,newY,newX-1,newY-1)) {
+                tilesPresent.add(getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class));
+                if(tilesPresent.size() > 0) availableTiles.add((Tile)tilesPresent.get(0));
+            }
+            
+            if(GameWorld.game.check(middle,newX,newY,newX+1,newY-1))
+            {
+                tilesPresent.add((Tile)(getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class)));
+                if(tilesPresent.size() > 0) availableTiles.add((Tile)tilesPresent.get(0));
+            }
+            for(Tile tile: availableTiles) tile.drawTile(tile.getColor(), true);
         }
     }
     
@@ -106,39 +99,27 @@ public class Piece extends Actor
     {
         for(int i = 0; i < board.length; i++)
         {
-            for(int j = 0; j < board[i].length; j++)
-            {
-                System.out.print(board[i][j]);
-            }
+            for(int j = 0; j < board[i].length; j++) System.out.print(board[i][j]);
             System.out.println();
         }
     }
     
-    private char[][] createBoard() //issue in this function
+    private char[][] createBoard()
     {
         char[][] board = GameWorld.game.getBoard();
-        for(int col = 0; col < 8; col++)
+        for(int row = 0; row < 8; row++)
         {
-            for(int row = 0; row < 8; row++)
+            for(int col = 0; col < 8; col++)
             {
-                int offset = (row+1) % 2 == 0 ? 0:1;
-                if((col + 1 + offset) % 2 == 0)
+                int offset = (col + 1) % 2 == 0 ? 0:1;
+                if((row + 1 + offset) % 2 == 1)
                 {
-                    List pieceAt = getWorld().getObjectsAt(50 * (row) + 25,50 * (col) + 25, Piece.class);
-                    if(pieceAt.size() == 0)
-                    {
-                        board[col][row] = 'n';
-                    }
-                    else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor1))
-                    {
-                        board[col][row] = 'r';
-                    }
-                    else
-                    {
-                        board[col][row] = 'w';
-                    }
+                    List pieceAt = getWorld().getObjectsAt(50 * (col) + 25,50 * (row) + 25, Piece.class);
+                    if(pieceAt.size() == 0) board[row][col] = 'n';
+                    else if(((Piece)pieceAt.get(0)).getColor().equals(GameWorld.pieceColor1)) board[row][col] = 'r';
+                    else board[row][col] = 'w';
                 }
-                else board[col][row] = 'n';
+                else board[row][col] = 'n';
             }
         }
         return board;
