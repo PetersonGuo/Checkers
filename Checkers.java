@@ -1,12 +1,10 @@
 import java.util.*;
-import java.io.*;
 public class Checkers
 {
     private final int length = 8;
     private char[][] main;
     private int turn = 0;
-    private Scanner scan;
-    
+
     /*
      * Create a multi dimensional array
      * w stands for white
@@ -15,7 +13,6 @@ public class Checkers
      */
     public Checkers()
     {
-        scan = new Scanner(System.in);
         main = new char[8][8];
         for(int i = 0; i < length; i++)
         {
@@ -27,11 +24,13 @@ public class Checkers
             }
         }
     }
-    
+
     public int getTurn() {return turn;}
+
     public char[][] getBoard() {return main;}
+
     public void setBoard(char[][] main) {this.main = main;}
-    
+
     private int score(char[][] board) 
     {
         int red = 0;
@@ -46,27 +45,27 @@ public class Checkers
         }
         return white - red;
     }
-    
+
     private int whiteLeft(char[][] board)
     {
         int white = 0;
         for(int i = 0; i < board.length; i++) for(int j = 0; j < board[i].length; j++) if(board[i][j] == 'w') white++;;;
         return white;
     }
-        
+
     private int redLeft(char[][] board)
     {
         int red = 0;
         for(int i = 0; i < board.length; i++) for(int j = 0; j < board[i].length; j++) if(board[i][j] == 'w') red++;;;
         return red;
     }
-    
+
     private char opp(char curr)
     {
         if(curr == 'w') return 'r';
         return 'w';
     }
-    
+
     public boolean check(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
     {
         if(finalRow >= 8|| finalCol >= 8 || finalRow < 0 || finalCol < 0) return false;
@@ -79,12 +78,12 @@ public class Checkers
                 if(rowDiff < 0)
                 {
                     if(colDiff < 0) if(board[inRow - 1][inCol - 1] == opp(board[inRow][inCol])) return true;
-                    else if(colDiff > 0) if(board[inRow - 1][inCol + 1] == opp(board[inRow][inCol])) return true;;
+                        else if(colDiff > 0) if(board[inRow - 1][inCol + 1] == opp(board[inRow][inCol])) return true;;
                 }
                 else if(rowDiff > 0)
                 {
                     if(colDiff < 0) if(board[inRow + 1][inCol - 1] == opp(board[inRow][inCol])) return true;
-                    else if(colDiff > 0) if(board[inRow + 1][inCol + 1] == opp(board[inRow][inCol])) return true;;
+                        else if(colDiff > 0) if(board[inRow + 1][inCol + 1] == opp(board[inRow][inCol])) return true;;
                 }
                 canJump(board, finalRow, finalCol, false, 1);
             }
@@ -92,7 +91,7 @@ public class Checkers
         }
         return false;
     }
-    
+
     public boolean canJump(char[][] board, int row, int col, boolean isKing, int depth)
     {
         int[] increment = {1,-1};
@@ -107,7 +106,7 @@ public class Checkers
         }
         return false;
     }
-    
+
     public char[][] takeTurn(char[][] board, int inRow, int inCol, int finalRow, int finalCol)
     {
         if(check(board,inRow,inCol,finalRow,finalCol))
@@ -121,7 +120,7 @@ public class Checkers
         }
         return board;
     }
-    
+
     // Make deep copy of array and play possible moves there
     // Add double jump and king pieces king has value 2
     // AI chooses how many times to skip pieces
@@ -130,13 +129,12 @@ public class Checkers
     public int minimax(int depth, boolean white, char[][] board, int alpha, int beta, int piecesLeft)
     {
         int score = score(board);
-        
+
         if(white)
         {
             if(depth == 20 || piecesLeft == 0) return score; // Base Case
             int best = Integer.MIN_VALUE;
-            
-            // Recur for left and right children
+
             List<Integer> indice = new ArrayList<Integer>(piecesLeft*2); //find locations of all remaining white pieces formatted [row,col]
             for(int i = 0; i < 8; i++)
             {
@@ -148,14 +146,15 @@ public class Checkers
                     }
                 }
             }
-            
+
             for(int i = 0; i < piecesLeft*2; i+=2) 
             {
                 int x = indice.get(i);
                 int y = indice.get(i + 1);
-                for (int j = 0; j < 2; j++)
+                // Recur for left and right children
+                for (int j = 0; j < 4; j++)
                 {
-                    int[] direction = {1,-1};
+                    int[] direction = {1,-1, 2,-2};
                     // if can take
                     if(check(board, indice.get(i), indice.get(i+1), indice.get(i) + direction[j], indice.get(i+1) + 1)) //if is possible move take move
                     {
@@ -176,7 +175,7 @@ public class Checkers
         {
             if(depth == 10 || piecesLeft == 0) return score; // Base Case
             int best = Integer.MAX_VALUE;
-            
+
             List<Integer> indice = new ArrayList<Integer>(piecesLeft*2); //find locations of all remaining white pieces formatted [row,col]
             for(int i = 0; i < 8; i++)
             {
@@ -188,14 +187,14 @@ public class Checkers
                     }
                 }
             }
-            
+
             for(int i = 0; i < piecesLeft*2; i+=2) 
             {
                 int x = indice.get(i);
                 int y = indice.get(i + 1);
-                for (int j = 0; j < 2; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    int[] direction = {1,-1};
+                    int[] direction = {1,-1, 2,-2};
                     // if can take
                     if(check(board, indice.get(i), indice.get(i+1), indice.get(i) + direction[j], indice.get(i+1) + 1)) //if is possible move take move
                     {
