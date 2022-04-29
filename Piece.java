@@ -78,24 +78,16 @@ public class Piece extends Actor
         char[][] middle = createBoard();
         int newX = getX()/GameWorld.TILE_SIZE;
         int newY = getY()/GameWorld.TILE_SIZE;
-        List tilesPresent = new ArrayList<>();
         if(!getColor().equals(GameWorld.pieceColor1))
         {
-            if(GameWorld.game.check(middle,newX,newY,newX-1,newY-1)) {
-                tilesPresent.add(getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class));
-                if(tilesPresent.size() > 0) 
-                    {
-                        Object x = tilesPresent.get(0);
-                        availableTiles.add((Tile)x);
-                    }
+            if(GameWorld.game.check(middle,newX,newY,newX-1,newY-1)) 
+            {
+                availableTiles.add((Tile)(getWorld().getObjectsAt(getX() - GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class).get(0)));
             }
             
             if(GameWorld.game.check(middle,newX,newY,newX+1,newY-1))
             {
-                tilesPresent.add(getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class));
-                if(tilesPresent.size() > 0) 
-                {Tile x = (Tile)tilesPresent.get(0);
-                        availableTiles.add(x);}
+                availableTiles.add((Tile)(getWorld().getObjectsAt(getX() + GameWorld.TILE_SIZE, getY() - GameWorld.TILE_SIZE, Tile.class).get(0)));
             }
             for(Tile tile: availableTiles) tile.drawTile(tile.getColor(), true);
         }
