@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Piece
+comment0.text=\n\ Write\ a\ description\ of\ class\ Piece\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=color
+comment1.target=Piece(greenfoot.Color)
+comment2.params=
+comment2.target=greenfoot.Color\ getColor()
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\n\ Act\ -\ do\ whatever\ the\ Pieces\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment4.params=color
+comment4.target=void\ drawPiece(greenfoot.Color)
+comment5.params=tile
+comment5.target=boolean\ valid(Tile)
+comment6.params=
+comment6.target=void\ checkPlayer()
+comment7.params=
+comment7.target=char[][]\ createBoard()
+comment8.params=arr
+comment8.target=void\ print(char[][])
+numComments=9
